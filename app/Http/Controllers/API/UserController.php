@@ -7,9 +7,9 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Project;
 use App\User;
 use Validator;
-use App\Http\Resources\Project as ProjectResource;
+use App\Http\Resources\Project as UserResource;
 
-class ProjectController extends BaseController
+class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class ProjectController extends BaseController
     public function index()
     {
         $projects = Project::all();
-        return $this->sendResponse(ProjectResource::collection($projects), 'Project retrieved successfully.');
+        return $this->sendResponse(UserResource::collection($projects), 'Project retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -48,7 +48,7 @@ class ProjectController extends BaseController
             $project->users()->attach($users);
         }
 
-        return $this->sendResponse(new ProjectResource($project), 'Project created successfully.');
+        return $this->sendResponse(new UserResource($project), 'Project created successfully.');
     }
 
     /**
@@ -65,7 +65,7 @@ class ProjectController extends BaseController
             return $this->sendError('Project not found.');
         }
 
-        return $this->sendResponse(new ProjectResource($project), 'Project retrieved successfully.');
+        return $this->sendResponse(new UserResource($project), 'Project retrieved successfully.');
     }
 
     /**
@@ -92,7 +92,7 @@ class ProjectController extends BaseController
         $project->description = $input['description'];
         $project->save();
 
-        return $this->sendResponse(new ProjectResource($project), 'Project updated successfully.');
+        return $this->sendResponse(new UserResource($project), 'Project updated successfully.');
     }
 
     /**

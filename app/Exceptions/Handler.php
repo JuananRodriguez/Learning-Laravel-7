@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
 
-        if($exception->getCode() == 0){
+       /*  if($exception->getCode() == 0){
             return response(
                 [
                     'errors' => [
@@ -66,7 +66,7 @@ class Handler extends ExceptionHandler
                     ]
                 ], 
             401); 
-        }
+        } */
 
         return response()->json(
             [
