@@ -21,7 +21,7 @@ Route::post('login', 'API\RegisterController@login');
 });
  */
 
-Route::middleware('auth:api')->group( function () {
+Route::middleware(['auth:api','role:1'])->group( function () {
     Route::resource('projects', 'API\ProjectController');
     Route::resource('tasks', 'API\TaskController');
     Route::resource('roles', 'API\RoleController');

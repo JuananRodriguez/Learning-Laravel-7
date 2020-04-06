@@ -39,8 +39,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-
     public function projects()
     {
         return $this->belongsToMany('App\Project');
@@ -50,5 +48,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Role');
     }
-}
 
+    public function hasRole($role)
+    {
+        $result = $this->roles()->get()->filter(function ($val) use ($role) {
+            return $val->id == $role;
+        });
+
+        return !!count($result);
+    }
+}
